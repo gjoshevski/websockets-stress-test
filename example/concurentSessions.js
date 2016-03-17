@@ -3,7 +3,7 @@ exports.name = 'Wait 2 sec';
 exports.description = 'Simple short test that shows how tests are working';
 
 exports.path = '';
-
+var seconds = 60;
 
 
 exports.init = function (ws, api) {
@@ -13,7 +13,7 @@ exports.init = function (ws, api) {
 		//wait 10 min then close
 		setTimeout(function(str1, str2) {
 		   ws.close();
-		}, 10*60*1000);
+		}, seconds*1000);
 		
 		
     });
