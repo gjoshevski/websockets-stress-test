@@ -38,7 +38,10 @@ var
     multipleTest,
     writeJson;
     
- var log = require('logging').from("log-file"); 
+ var winston = require('winston');
+ 
+ winston.add(winston.transports.File, { filename: 'log.log' });
+ winston.remove(winston.transports.Console);
 
 /**
  * Run single test for given scenario on given URL.
@@ -109,7 +112,7 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
                 // Add default checkpoint when connection opens
 
                 api.checkpoint('Connection opened ' + countOpened);
-               // log('Connection opened ' + countOpened);
+                winston.info('Connection opened ' + countOpened);
                 // And run scenario on this connection
                 scenario.init(connections[index].socket, api);
             });
@@ -118,7 +121,8 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
                 var i, j, result, connectionTime;
 
                 // Add default checkoint when connection closed
-                api.checkpoint('Connection closed');
+                winston.info('Connection closed');
+                api.checkpoint('Connection closed: ' + index);
                 countOpened--;
 
                 // If we haven't any another connections
