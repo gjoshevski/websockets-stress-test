@@ -25,7 +25,8 @@
     },
     "dependencies": {
         "ws": "latest",
-        "cli": "latest"
+        "cli": "latest",
+		"logging" : "latest"
     },
     "licenses": [{
         "type": "GPLv3"
