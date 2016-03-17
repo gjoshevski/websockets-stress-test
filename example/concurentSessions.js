@@ -3,7 +3,7 @@ exports.name = 'Wait 2 sec';
 exports.description = 'Simple short test that shows how tests are working';
 
 exports.path = '';
-var seconds = 60;
+var seconds = 5*60;
 
 
 exports.init = function (ws, api) {

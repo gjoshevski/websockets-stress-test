@@ -49,7 +49,7 @@ var
      console.log(result);
  });
  
- winston.add(winston.transports.File, { filename: 'log.log' });
+ winston.add(winston.transports.File, { filename: pid+'-log.log' });
  winston.remove(winston.transports.Console);
 
 /**
