@@ -26,7 +26,8 @@
     "dependencies": {
         "ws": "latest",
         "cli": "latest",
-		"winston" : "latest"
+		"winston" : "latest",
+        "usage" : "latest"
     },
     "licenses": [{
         "type": "GPLv3"

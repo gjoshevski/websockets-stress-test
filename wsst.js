@@ -39,6 +39,15 @@ var
     writeJson;
     
  var winston = require('winston');
+ var usage = require('usage');
+ var pid = process.pid; 
+ usage.clearHistory(pid);
+ 
+ var options = { keepHistory: true }
+ 
+ usage.lookup(pid, options, function(err, result) {
+     console.log(result);
+ });
  
  winston.add(winston.transports.File, { filename: 'log.log' });
  winston.remove(winston.transports.Console);
@@ -122,7 +131,7 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
 
                 // Add default checkoint when connection closed
                 winston.info('Connection closed');
-                api.checkpoint('Connection closed: ' + index);
+                api.checkpoint('Connection closed: ' + index+1);
                 countOpened--;
 
                 // If we haven't any another connections
@@ -206,7 +215,11 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
                     }
 
                     cli.ok('----------------------------------------------------------------------------------');
-
+                    
+                    usage.lookup(pid, options, function(err, result) {
+                        winston.info(result);
+                    });
+                    
                     if (typeof callback === 'function') {
                         callback.call(cli, result);
                     }
