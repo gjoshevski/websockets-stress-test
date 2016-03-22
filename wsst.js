@@ -1,6 +1,6 @@
 /*
 Copyright (c) 2011 Bogdan Tkachenko <bogus.weber@gmail.com>
-
+ts
 Tool written in NodeJS that allows to make a stress test for
 your application that uses WebSockets
 
