@@ -30,9 +30,10 @@
    */
   deploy : {
     production : {
+      key  : "~/.ssh/id_rsa.pub",
       user : "root",
       host : "10.208.236.88",
-      ref  : "origin/master",
+      ref  : "master",
       repo : "git@github.com:gjoshevski/websockets-stress-test.git",
       path : "/usr/local/www",
       "post-deploy" : "npm install ; pm2 startOrRestart ecosystem.json --env production"
