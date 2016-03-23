@@ -30,7 +30,7 @@
    */
   deploy : {
     production : {
-      key  : "~/.ssh/id_rsa.pub",
+      key  : "/root/.ssh/id_rsa.pub",
       user : "root",
       host : "10.208.236.88",
       ref  : "master",
