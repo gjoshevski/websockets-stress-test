@@ -43,6 +43,7 @@ var
  var pid = process.pid; 
  usage.clearHistory(pid);
  
+ 
  var options = { keepHistory: true }
  
  usage.lookup(pid, options, function(err, result) {
