@@ -81,14 +81,13 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
 
     for (i=0; i<countConnections; i++) {
         (function(index) {
-            var api;
-
+           
             connections[index] = {
                 socket:      new WebSocket(url),
                 checkpoints: []
             };
 
-            api = {
+            var api = {
                 /**
                  * Create checkpoint in scenario
                  *
