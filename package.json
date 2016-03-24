@@ -27,8 +27,7 @@
         "ws": "latest",
         "cli": "latest",
 		"winston" : "latest",
-        "usage" : "latest",
-	"pm2"  :  "latest
+        "usage" : "latest"	
     },
     "licenses": [{
         "type": "GPLv3"

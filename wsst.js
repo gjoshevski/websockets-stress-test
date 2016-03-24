@@ -39,19 +39,14 @@ var
     writeJson;
     
  var winston = require('winston');
- var usage = require('usage');
  var pid = process.pid; 
- usage.clearHistory(pid);
-   
- 
- var options = { keepHistory: true }
- 
- usage.lookup(pid, options, function(err, result) {
-     console.log(result);
- });
- 
+
+/*
+ * add log  
+ */ 
  winston.add(winston.transports.File, { filename: pid+'-log.log' });
  winston.remove(winston.transports.Console);
+
 
 /**
  * Run single test for given scenario on given URL.
@@ -81,7 +76,12 @@ test = function (webSocketUrl, scenarioName, countConnections, cli, callback) {
 
     for (i=0; i<countConnections; i++) {
         (function(index) {
-           
+            
+            if(scenario.executeHTTPEquests){
+                scenario.executeHTTPEquests(winston);
+            }
+            
+            
             connections[index] = {
                 socket:      new WebSocket(url),
                 checkpoints: []
@@ -283,10 +283,14 @@ cli.parse({
     output:          ['o', 'File to save JSON result', 'file']
 });
 
+
+
 cli.main(function (args, options) {
     if (args.length !== 2) {
         cli.fatal('Wrong number of arguments. Must be exactly 2 arguments! See `' + cli.app + ' -h` for details');
     }
+    
+   
 
     var connections;
 
