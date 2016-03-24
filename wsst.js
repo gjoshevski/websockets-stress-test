@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author Bogdan Tkachenko <bogus.weber@gmail.com>
  * @version 0.1
  */
-
+ 
 var
     cli       = require('cli'),
     WebSocket = require('ws'),
