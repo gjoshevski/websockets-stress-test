@@ -42,7 +42,7 @@ var
  var usage = require('usage');
  var pid = process.pid; 
  usage.clearHistory(pid);
- 
+   
  
  var options = { keepHistory: true }
  
