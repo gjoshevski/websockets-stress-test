@@ -16,3 +16,6 @@ cd websockets-stress-test
 npm install
 
 node wsst.js -h
+
+
+node wsst.js --connections 50 ws://104.239.231.22 scenarios/realScenario.js
