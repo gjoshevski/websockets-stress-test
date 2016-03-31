@@ -38,24 +38,31 @@ var
     multipleTest,
     writeJson;
 
-var Promise = require('promise');
+var Promise = require('bluebird');
 
 
 var logger = require('./logger.js');
 var pid = process.pid;
 
+
+
 var httpCalls = function(countConnections, scenario) {
+    Promise.promisifyAll(scenario);
     return new Promise(function(resolve, reject) {
+
         var httpReq = function(x) {
             if (x < countConnections) {
-                scenario.executeHTTPEquests();
-                httpReq(x + 1);
-            }else{
-                 resolve(true);
+                scenario.executeHTTPRequestsAsync().then(function() {
+                    httpReq(x + 1);
+                    if (x + 1 == countConnections) {
+                        resolve(true);
+                    }
+                });
             }
-            
-        };        
+        };
+
         httpReq(0);
+
     });
 
 };
@@ -98,7 +105,7 @@ test = function(webSocketUrl, scenarioName, countConnections, cli, callback) {
     */
 
     httpCalls(countConnections, scenario)
-        .then(function(rr) {           
+        .then(function(rr) {
             /*
             * sockets 
             */
@@ -256,7 +263,7 @@ test = function(webSocketUrl, scenarioName, countConnections, cli, callback) {
         },
         function name(params) {
             cli.info(params);
-        } ) ;
+        });
 
 };
 

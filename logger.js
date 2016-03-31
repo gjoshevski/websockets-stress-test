@@ -10,7 +10,7 @@
 
     var logger = new (winston.Logger)({
         levels: levels,
-        // colors: colors,
+        fields:['message','responseTime','url'],
         transports: [
             new winston.transports.File({
                 name: 'httpLog',
